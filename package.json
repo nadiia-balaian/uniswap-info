@@ -1,0 +1,66 @@
+{
+  "name": "uniswap-info",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "prettier --write .",
+    "lint-files": "eslint --ext .ts,.tsx,.js,.tsx --fix",
+    "preview": "vite preview",
+    "lint": "eslint --ext .ts,.tsx,.js,.tsx --fix"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.19",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "graphql": "^16.6.0",
+    "graphql-tag": "^2.12.6",
+    "grommet": "^2.31.0",
+    "grommet-icons": "^4.10.0",
+    "jsdom": "^21.1.1",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.7",
+    "react": "^18.2.0",
+    "react-apollo": "^3.1.5",
+    "react-app": "^1.1.2",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.3",
+    "react-router-dom": "^6.10.0",
+    "recharts": "^2.5.0",
+    "styled-components": "^5.3.9",
+    "vite-plugin-eslint": "^1.8.1",
+    "vitest": "^0.29.8"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json}": [
+      "yarn lint-files"
+    ],
+    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  }
+}
