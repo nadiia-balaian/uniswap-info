@@ -20,10 +20,13 @@ const ErrorBoundaryLayout = () => (
   </ErrorBoundary>
 );
 
+const link = new HttpLink({
+  uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3',
+});
+
+
 export const client = new ApolloClient({
-  link: new HttpLink({
-    uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3',
-  }),
+  link: link as any,
   cache: new InMemoryCache(),
 });
 
