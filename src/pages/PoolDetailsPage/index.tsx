@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Box, Card, Heading, Tag, Text } from 'grommet';
+import { Box, Card, Heading, ResponsiveContext, Tag, Text } from 'grommet';
 import { useParams } from 'react-router-dom';
 
 import { BarChart } from '../../components/BarChart';
@@ -44,28 +44,32 @@ export function PoolDetailsPage() {
               </Box>
             </>
           )}
-          <Box direction="row" gap="medium" align="stretch">
-            <Card pad="medium">
-              {loading ? (
-                <Box height="50vh" align="center" justify="center" width="200px">
-                  <Loader size={LoaderSize.Large} margin="none" />
-                </Box>
-              ) : (
-                <PoolDetails poolData={data?.pool} poolDayData={data?.poolDayDatas[0]} />
-              )}
-            </Card>
-            <Card pad={{ vertical: 'medium', horizontal: 'small' }} width="100%" elevation="none">
-              {loading ? (
-                <Box height="50vh" align="center" justify="center" width="100%">
-                  <Loader size={LoaderSize.Large} margin="none" />
-                </Box>
-              ) : (
-                <Box direction="row" gap="small">
-                  <BarChart chartData={data.poolDayDatas} />
-                </Box>
-              )}
-            </Card>
-          </Box>
+          <ResponsiveContext.Consumer>
+            {(size) => (
+              <Box direction={size === 'small' ? 'column' : 'row'} gap="medium" align="stretch">
+                <Card pad="medium">
+                  {loading ? (
+                    <Box height="50vh" align="center" justify="center" width="200px">
+                      <Loader size={LoaderSize.Large} margin="none" />
+                    </Box>
+                  ) : (
+                    <PoolDetails poolData={data?.pool} poolDayData={data?.poolDayDatas[0]} />
+                  )}
+                </Card>
+                <Card pad={{ vertical: 'medium', horizontal: 'small' }} width="100%" elevation="none">
+                  {loading ? (
+                    <Box height="50vh" align="center" justify="center" width="100%">
+                      <Loader size={LoaderSize.Large} margin="none" />
+                    </Box>
+                  ) : (
+                    <Box direction="row" gap="small">
+                      <BarChart chartData={data.poolDayDatas} />
+                    </Box>
+                  )}
+                </Card>
+              </Box>
+            )}
+          </ResponsiveContext.Consumer>
         </Box>
       )}
     </Box>

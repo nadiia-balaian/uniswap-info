@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Box, Card, Heading, RadioButtonGroup, Select, Text } from 'grommet';
+import { Box, Card, Heading, RadioButtonGroup, ResponsiveContext, Select, Text } from 'grommet';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -28,41 +28,48 @@ export function TokenDetailsPage() {
           <Heading level="3" margin="small">
             {data?.token?.name} {data?.token?.symbol ? `(${data?.token?.symbol})` : ''}
           </Heading>
-          <Box direction="row" gap="medium" align="stretch">
-            <Card pad={{ vertical: 'medium', horizontal: 'small' }} elevation="none">
-              {loading ? (
-                <Box height="50vh" align="center" justify="center" width="200px">
-                  <Loader size={LoaderSize.Large} margin="none" />
-                </Box>
-              ) : (
-                <TokenDetails tokenData={data?.token} tokenDayData={data?.tokenDayDatas[0]} />
-              )}
-            </Card>
-            <Card pad={{ vertical: 'medium', horizontal: 'small' }} width="100%" elevation="none">
-              {loading ? (
-                <Box height="50vh" align="center" justify="center" width="100%">
-                  <Loader size={LoaderSize.Large} margin="none" />
-                </Box>
-              ) : (
-                <Box direction="row" gap="small">
-                  {renderChart([...data.tokenDayDatas].reverse(), filter as string)}
-                  <Box gap="small">
-                    <Select
-                      options={dateRanges}
-                      value={dateRanges.find((option) => option.value === timeRange)}
-                      onChange={({ option }) => setTimeRange(option.value)}
-                    />
-                    <RadioButtonGroup
-                      name="tokenFilter"
-                      options={tokenFilters}
-                      value={filter}
-                      onChange={(event) => setFilter(event.target.value)}
-                    />
-                  </Box>
-                </Box>
-              )}
-            </Card>
-          </Box>
+          <ResponsiveContext.Consumer>
+            {(size) => (
+              <Box direction={size === 'small' ? 'column' : 'row'} gap="medium" align="stretch">
+                <Card pad={{ vertical: 'medium', horizontal: 'small' }} elevation="none">
+                  {loading ? (
+                    <Box height="50vh" align="center" justify="center" width={size === 'small' ? '100%' : '200px'}>
+                      <Loader size={LoaderSize.Large} margin="none" />
+                    </Box>
+                  ) : (
+                    <TokenDetails tokenData={data?.token} tokenDayData={data?.tokenDayDatas[0]} size={size} />
+                  )}
+                </Card>
+                <Card pad={{ vertical: 'medium', horizontal: 'small' }} width="100%" elevation="none">
+                  {loading ? (
+                    <Box height="50vh" align="center" justify="center" width="100%">
+                      <Loader size={LoaderSize.Large} margin="none" />
+                    </Box>
+                  ) : (
+                    <Box
+                      direction={size === 'small' ? 'column-reverse' : 'row'}
+                      gap={size === 'small' ? 'medium' : 'small'}
+                    >
+                      {renderChart([...data.tokenDayDatas].reverse(), filter as string, size)}
+                      <Box gap={size}>
+                        <Select
+                          options={dateRanges}
+                          value={dateRanges.find((option) => option.value === timeRange)}
+                          onChange={({ option }) => setTimeRange(option.value)}
+                        />
+                        <RadioButtonGroup
+                          name="tokenFilter"
+                          options={tokenFilters}
+                          value={filter}
+                          onChange={(event) => setFilter(event.target.value)}
+                        />
+                      </Box>
+                    </Box>
+                  )}
+                </Card>
+              </Box>
+            )}
+          </ResponsiveContext.Consumer>
         </Box>
       )}
     </Box>

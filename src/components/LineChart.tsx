@@ -3,10 +3,10 @@ import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YA
 import { getTimeAxis } from '../utils/chart';
 import { numberFormatter } from '../utils/formatter';
 
-export function renderChart(data: any, dataKey = 'priceUSD') {
+export function renderChart(data: any, dataKey = 'priceUSD', size: string) {
   //adjust tick count
   return (
-    <ResponsiveContainer height={400} width="70%" aspect={2}>
+    <ResponsiveContainer height={400} width={size === 'small' ? '100%' : '70%'} aspect={2}>
       <LineChart data={data}>
         <XAxis dataKey={(data) => getTimeAxis(data.date)} axisLine={false} tickLine={false} />
         <YAxis

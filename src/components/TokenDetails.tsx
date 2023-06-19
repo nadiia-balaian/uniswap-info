@@ -3,12 +3,20 @@ import { Box, Heading, Text } from 'grommet';
 import { Token, TokenDayData } from '../interfaces';
 import { numberFormatter } from '../utils/formatter';
 
-export function TokenDetails({ tokenData, tokenDayData }: { tokenData: Token; tokenDayData: TokenDayData }) {
+export function TokenDetails({
+  tokenData,
+  tokenDayData,
+  size,
+}: {
+  tokenData: Token;
+  tokenDayData: TokenDayData;
+  size: string;
+}) {
   const { totalValueLockedUSD, txCount, volumeUSD } = tokenData;
   const { totalValueLockedUSD: dailyTVL, volumeUSD: dailyVolumeUSD, feesUSD, priceUSD } = tokenDayData;
 
   return (
-    <Box gap="small" width="200px">
+    <Box gap="small" width={size === 'small' ? '100%' : '200px'}>
       <Box>
         <Text color="text-faded" size="small">
           Price

@@ -2,10 +2,11 @@ import './styles/reset.css';
 import './App.css';
 
 import { useQuery } from '@apollo/client';
-import { Box, Grid, Heading, Text } from 'grommet';
+import { Box, Heading, Text } from 'grommet';
 
 import { InfoCard } from './components/Card';
 import { Loader, LoaderSize } from './components/Loader';
+import { ResponsiveGrid } from './components/ResponsiveGrid';
 import { GLOBAL_DATA } from './queries/global';
 import { numberFormatter } from './utils/formatter';
 
@@ -23,7 +24,7 @@ function App() {
       ) : error ? (
         <Text color="danger">Something went wrong. {error.message}</Text>
       ) : (
-        <Grid rows="small" columns={['medium', 'medium']} gap="medium">
+        <ResponsiveGrid>
           <InfoCard>
             <Text color="text">Amount of pools created</Text>
             <Heading level="2" weight="500">
@@ -48,7 +49,7 @@ function App() {
               ${numberFormatter(+data.factory.totalValueLockedUSD)}
             </Heading>
           </InfoCard>
-        </Grid>
+        </ResponsiveGrid>
       )}
     </Box>
   );

@@ -75,4 +75,13 @@ export const theme = {
         extend: () => `background: ${colors.background};`
       }
     },
+    breakpoints: {
+      small: {
+        value: 600
+      },
+      medium: {
+        value: 900
+      },
+      large: 3000
+    }
   };

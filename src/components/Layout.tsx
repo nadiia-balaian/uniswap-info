@@ -1,4 +1,4 @@
-import { Box, Grommet, Main } from 'grommet';
+import { Box, Grommet, Main, ResponsiveContext } from 'grommet';
 import { Actions } from 'grommet-icons';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -27,11 +27,15 @@ export const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
         <Box height="30px">
           <Actions onClick={() => setDarkMode(!darkMode)} cursor="pointer" />
         </Box>
-        <Box direction="row" height="calc(100vh - 54px)">
-          <Box pad={{ vertical: 'xsmall', horizontal: 'medium' }} flex={{ grow: 1, shrink: 1 }}>
-            {children}
-          </Box>
-        </Box>
+        <ResponsiveContext.Consumer>
+          {(size) => (
+            <Box direction="row" height={size === 'small' ? 'auto' : 'calc(100vh - 54px)'}>
+              <Box pad={{ vertical: 'xsmall', horizontal: 'medium' }} flex={{ grow: 1, shrink: 1 }}>
+                {children}
+              </Box>
+            </Box>
+          )}
+        </ResponsiveContext.Consumer>
       </Main>
       <Gradient />
     </Grommet>
