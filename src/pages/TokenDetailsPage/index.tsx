@@ -1,8 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { Box, Card, Heading, RadioButtonGroup, Select, Text } from 'grommet';
-import { FormPrevious } from 'grommet-icons';
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { renderChart } from '../../components/LineChart';
 import { Loader, LoaderSize } from '../../components/Loader';
@@ -12,7 +11,6 @@ import { dateRanges, tokenFilters } from '../../utils/chart';
 
 export function TokenDetailsPage() {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const [filter, setFilter] = useState<string | number>(tokenFilters[0].value);
   const [timeRange, setTimeRange] = useState(7);
@@ -22,33 +20,16 @@ export function TokenDetailsPage() {
   });
 
   return (
-    <Box round="1rem" border={{ size: '1px', color: 'border-dark' }} pad="medium">
-      <Box direction="row" align="center">
-        <FormPrevious
-          size="large"
-          onClick={() => {
-            navigate('/tokens');
-          }}
-        />
-        <Heading level="3" margin="small">
-          Token Details
-        </Heading>
-        {/* <SwapWidget defaultOutputTokenAddress={id} theme={darkTheme} /> */}
-      </Box>
-      {/* {loading ? (
-        <Box height="70vh" align="center" justify="center">
-          <Loader size={LoaderSize.Large} margin="none" />
-        </Box> */}
-      {/* ) :  */}
+    <Box round="1rem" border={{ size: '.5px', color: 'border' }} pad="medium" background="card-color">
       {error ? (
         <Text color="danger">Something went wrong. {error.message}</Text>
       ) : (
         <Box>
-          <Heading level="4" margin="small">
-            {data?.token?.name} ({data?.token?.symbol})
+          <Heading level="3" margin="small">
+            {data?.token?.name} {data?.token?.symbol ? `(${data?.token?.symbol})` : ''}
           </Heading>
           <Box direction="row" gap="medium" align="stretch">
-            <Card pad={{ vertical: 'medium', horizontal: 'small' }} background={{ dark: '#33303f', light: '#e5e5e5' }}>
+            <Card pad={{ vertical: 'medium', horizontal: 'small' }} elevation="none">
               {loading ? (
                 <Box height="50vh" align="center" justify="center" width="200px">
                   <Loader size={LoaderSize.Large} margin="none" />
@@ -57,11 +38,7 @@ export function TokenDetailsPage() {
                 <TokenDetails tokenData={data?.token} tokenDayData={data?.tokenDayDatas[0]} />
               )}
             </Card>
-            <Card
-              pad={{ vertical: 'medium', horizontal: 'small' }}
-              background={{ dark: '#33303f', light: '#e5e5e5' }}
-              width="100%"
-            >
+            <Card pad={{ vertical: 'medium', horizontal: 'small' }} width="100%" elevation="none">
               {loading ? (
                 <Box height="50vh" align="center" justify="center" width="100%">
                   <Loader size={LoaderSize.Large} margin="none" />

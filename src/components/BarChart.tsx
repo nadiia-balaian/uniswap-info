@@ -33,7 +33,7 @@ export const BarChart = ({ chartData }: { chartData: any }) => {
             cursor={{ fill: 'transparent' }}
           />
           <CartesianGrid stroke="#0e0e0e" strokeDasharray="5 5" />
-          <Bar dataKey={selectedFilter} fill="#8884d8" hide={false} />
+          <Bar dataKey={selectedFilter} fill="#6FE7CA" hide={false} />
         </Chart>
       </ResponsiveContainer>
     </>

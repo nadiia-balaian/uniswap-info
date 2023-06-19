@@ -1,51 +1,41 @@
+export const colors = {
+  text: {
+    dark: '#D1D1D1',
+    light: "#313131",
+  },
+  brand: '#6FE7CA',
+  background: {
+    dark: "#171920",
+    light: "#FAFAFA"
+  },
+  border: {
+    dark: '#6FE7CA',
+    light: '#909090',
+  },
+  danger: '#c0392b',
+  shadow: ' 0px 4px 7px 0px #00261F',
+  borderSize: '0.5px',
+  ['active-font']: '#F3F3F3',
+  ['passive-font']: '##7D7D7D',
+  ['card-color']: {
+    dark: 'rgba(15, 15, 15, 0.6);',
+    light: '#F4F4F4'
+  },
+  ['text-faded']: '#7D7D7D',
+};
+
 export const theme = {
     global: {
-      colors: {
-        text: {
-          dark: '#F4EEE0',
-          light: "#1d3660",
-        },
-        // text: '#1d3660',
-        brand: '#8884d8',
-        control: {
-          dark: '#F4EEE0',
-          light: "#1d3660",
-        },
-        background: {
-          dark: "#393646",
-          light: "#fff"
-        },
-        danger: '#c0392b',
-        ['border-light']: '#E5ECF5',
-        ['border-dark']: '#C9D8EF',
-        ['text-faded']: '#7E90B2',
-        ['text-dark']: '#354B71',
-        ['text-darker']: '#1D3660',
-        ['text-light']: '#FFFFFF',
-        ['danger-600']: '#C0392B',
-        ['black-700']: '#172B4D',
-        ['black-600']: '#1D3660',
-        ['black-500']: '#354B71',
-        ['brand-300']: '#72C8CF',
-        ['brand-80']: '#F7F8FA',
-        ['lighter-bg']: '#474452'
-      },
+      colors: colors,
       font: {
-        family: 'Poppins, sans-serif',
+        family: 'Inter, sans-serif',
         size: '18px',
         height: '20px',
-      },
-      dataTable: {
-        header: {
-          extend: () => `text-transform: uppercase; border-bottom: 1px solid #E5ECF5;`,
-          border: {
-            color: 'border-dark', // not working, still getting the default color
-          }
-        },
+        color: '#D1D1D1',
       },
       focus: {
         border: {
-          color: 'brand-200',
+          color: 'brand',
         },
         shadow: {
           size: '2px',
@@ -59,18 +49,30 @@ export const theme = {
           color: 'white',
         },
       },
-      select: {
-        background: 'white',
-      },
       hover: {
         background: {
-          dark: '#F4EEE0',
-          light: "#1d3660",
+          dark: 'rgba(24, 197, 155, 0.07)',
+          light:  'rgba(183, 255, 238, 0.35)'
         },
-        color: {
-          dark: '#1d3660',
-          light: "#F4EEE0",
+        border: {
+          color: 'brand',
+        },
+        text: {
+          dark: '#D1D1D1',
+          light: "#313131",
+        },
+      }
+    },
+    dataTable: {
+      header: {
+        font: {
+          weight: "600",
         }
+      },
+    },
+    select: {
+      container: {
+        extend: () => `background: ${colors.background};`
       }
     },
   };

@@ -1,0 +1,36 @@
+import { Pool, PoolDayData } from '../../src/interfaces';
+import { tokenDataMock } from './tokens';
+
+export const poolDataMock = (id: string) => (
+  {
+  id: id,
+  token0: tokenDataMock('token0'),
+  token1:  tokenDataMock('token1'),
+  liquidity: "467661815974142552840177978",
+  sqrtPrice: "91769404740555698783451192073158054",
+  token0Price: '0.0007453552900150295653356755047503526',
+  token1Price: '0.0007453552900150295653356755047503526',
+  volumeToken0: "7416233.099392966693495344",
+  volumeToken1: "8416233.099392966693495344",
+  volumeUSD: "316099587.6899977149976477959568247",
+  feesUSD: "12.1588479823448115445072371343828",
+  totalValueLockedUSD: '997295.28129037475500681170636',
+  totalValueLockedToken0: '214.199977217135635693',
+  totalValueLockedToken1: '489434.87583907501084212091760593',
+} as Pool);
+
+
+export const poolDayDataMock = (id: string) => (
+  {
+    id: id,
+    feesUSD: "12.1588479823448115445072371343828",
+    liquidity: "500400541877930206844310",
+    sqrtPrice: "25053498603068733748794983",
+    token0Price: "10000515.89024019515928398720936292",
+    token1Price: "0.00000009999484136372705899985951087582878",
+    tvlUSD: "2837.047759190541939188799578140641",
+    volumeToken0: "7416233.099392966693495344",
+    volumeToken1: "0.743338161623627355",
+    volumeUSD: "1215.88479823448115445072371343828",
+  } as PoolDayData
+);

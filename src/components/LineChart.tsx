@@ -19,7 +19,7 @@ export function renderChart(data: any, dataKey = 'priceUSD') {
           tickCount={50}
         />
         <CartesianGrid stroke="#0e0e0e" strokeDasharray="5 5" />
-        <Line type="monotone" dataKey={dataKey} stroke="#8884d8" strokeWidth={2} dot={false} />
+        <Line type="monotone" dataKey={dataKey} stroke="#6FE7CA" strokeWidth={2} dot={false} />
         <Tooltip
           formatter={(value) => numberFormatter(+parseFloat(value as string).toFixed(2))}
           labelStyle={{ color: '#33303f' }}

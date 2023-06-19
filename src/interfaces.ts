@@ -58,9 +58,15 @@ export interface Pool {
 
 export interface PoolDayData {
     id: string;
-    tvlUSD: number;
-    feesUSD: number;
-    txCount: number;
+    tvlUSD: string;
+    feesUSD: string;
+    volumeUSD: string;
+    sqrtPrice: string;
+    token0Price?: string;
+    token1Price?: string;
+    volumeToken0?: string;
+    volumeToken1?: string;
+    txCount?: number;
 }
 
   

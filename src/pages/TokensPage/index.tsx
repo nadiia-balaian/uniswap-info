@@ -1,6 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { Box, DataTable, Heading, Text } from 'grommet';
-import { FormPrevious } from 'grommet-icons';
+import { Box, DataTable, Text } from 'grommet';
 import { useNavigate } from 'react-router-dom';
 
 import { Loader, LoaderSize } from '../../components/Loader';
@@ -24,17 +23,17 @@ const columns = [
   },
   {
     property: 'Volume USD',
-    header: <Text>Volume USD</Text>,
+    header: 'Volume USD',
     render: (data: Token) => <Text>{numberFormatter(+data.volumeUSD, 1)}</Text>,
   },
   {
     property: 'txCount',
-    header: <Text>Transaction count</Text>,
+    header: 'Transaction count',
     render: (data: Token) => <Text>{numberFormatter(+data.txCount, 1)}</Text>,
   },
   {
     property: 'totalValueLockedUSD',
-    header: <Text>Liquidity</Text>,
+    header: 'Liquidity',
     render: (data: Token) => <Text>{numberFormatter(+data.totalValueLockedUSD, 1)}</Text>,
   },
 ];
@@ -45,19 +44,7 @@ export function TokensPage() {
   const navigate = useNavigate();
 
   return (
-    <Box round="1rem" border={{ size: '1px', color: 'border-dark' }} pad="medium">
-      <Box direction="row" align="center">
-        <FormPrevious
-          size="large"
-          onClick={() => {
-            navigate('/');
-          }}
-        />
-        <Heading level="3" margin="small">
-          All Tokens
-        </Heading>
-      </Box>
-
+    <Box round="1rem" border={{ size: '.5px', color: 'border' }} pad="medium" background="card-color">
       {loading ? (
         <Box height="70vh" align="center" justify="center">
           <Loader size={LoaderSize.Large} margin="none" />
@@ -71,7 +58,7 @@ export function TokensPage() {
             columns={columns}
             data={data.tokens}
             paginate={true}
-            step={10}
+            step={9}
             pad="small"
             onClickRow={({ datum }) => {
               navigate(`/tokens/${datum.id}`);

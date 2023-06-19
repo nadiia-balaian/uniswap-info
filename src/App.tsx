@@ -2,8 +2,9 @@ import './styles/reset.css';
 import './App.css';
 
 import { useQuery } from '@apollo/client';
-import { Anchor, Box, Card, Heading, Text } from 'grommet';
+import { Box, Grid, Heading, Text } from 'grommet';
 
+import { InfoCard } from './components/Card';
 import { Loader, LoaderSize } from './components/Loader';
 import { GLOBAL_DATA } from './queries/global';
 import { numberFormatter } from './utils/formatter';
@@ -15,13 +16,6 @@ function App() {
 
   return (
     <Box gap="small">
-      <Heading level="2">Overview</Heading>
-      <Anchor href="/tokens">
-        <Text margin={{ left: 'small' }}>Tokens</Text>
-      </Anchor>
-      <Anchor href="/pools">
-        <Text margin={{ left: 'small' }}>Pools</Text>
-      </Anchor>
       {loading ? (
         <Box height="70vh" align="center" justify="center">
           <Loader size={LoaderSize.Large} margin="none" />
@@ -29,32 +23,32 @@ function App() {
       ) : error ? (
         <Text color="danger">Something went wrong. {error.message}</Text>
       ) : (
-        <Card pad="small">
-          <Box>
-            <Text color="text-faded">Amount of pools created</Text>
-            <Heading level="3" weight="500">
+        <Grid rows="small" columns={['medium', 'medium']} gap="medium">
+          <InfoCard>
+            <Text color="text">Amount of pools created</Text>
+            <Heading level="2" weight="500">
               {numberFormatter(+data.factory.poolCount)}
             </Heading>
-          </Box>
-          <Box>
-            <Text color="text-faded">Amount of transactions</Text>
+          </InfoCard>
+          <InfoCard>
+            <Text color="text">Amount of transactions</Text>
             <Heading level="3" weight="500">
               {numberFormatter(+data.factory.totalFeesUSD)}
             </Heading>
-          </Box>
-          <Box>
-            <Text color="text-faded">Total volume in USD</Text>
+          </InfoCard>
+          <InfoCard>
+            <Text color="text">Total volume in USD</Text>
             <Heading level="3" weight="500">
               ${numberFormatter(+data.factory.totalVolumeUSD)}
             </Heading>
-          </Box>
-          <Box>
-            <Text color="text-faded">TVL in USD</Text>
+          </InfoCard>
+          <InfoCard>
+            <Text color="text">TVL in USD</Text>
             <Heading level="3" weight="500">
               ${numberFormatter(+data.factory.totalValueLockedUSD)}
             </Heading>
-          </Box>
-        </Card>
+          </InfoCard>
+        </Grid>
       )}
     </Box>
   );
